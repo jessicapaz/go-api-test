@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"net/http"
-    "github.com/jessicapaz/go-api-test/models"
+    "go-api-test/models"
 )
 
 // GetUsers get all users
