@@ -1,11 +1,11 @@
 package models
 
 import (
+	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres" //need to be here
-	"os"
 	"github.com/joho/godotenv"
-	"fmt"
+	"os"
 )
 
 var db *gorm.DB

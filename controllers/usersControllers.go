@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"encoding/json"
+	"go-api-test/models"
 	"net/http"
-    "go-api-test/models"
 )
 
 // GetUsers get all users
@@ -15,13 +15,12 @@ func GetUsers(w http.ResponseWriter, r *http.Request) {
 
 // CreateUser create a new user
 func CreateUser(w http.ResponseWriter, r *http.Request) {
-    user := &models.User{}
+	user := &models.User{}
 	err := json.NewDecoder(r.Body).Decode(user)
 	if err != nil {
 		models.Respond(w, models.Message("Invalid Request"), http.StatusBadRequest)
-        return
+		return
 	}
-    response, status := user.Create()
-    models.Respond(w, response, status)
+	response, status := user.Create()
+	models.Respond(w, response, status)
 }
-

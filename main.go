@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/gorilla/mux"
-	"os"
-	"net/http"
 	"go-api-test/controllers"
 	"log"
+	"net/http"
+	"os"
 )
 
 func main() {
