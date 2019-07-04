@@ -4,7 +4,7 @@ import (
 	"github.com/gorilla/mux"
 	"os"
 	"net/http"
-	"github.com/jessicapaz/api/controllers"
+	"github.com/jessicapaz/go-api-test/controllers"
 	"log"
 )
 

@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"net/http"
-    "github.com/jessicapaz/api/models"
+    "github.com/jessicapaz/go-api-test/models"
 )
 
 // GetUsers get all users
@@ -15,27 +15,13 @@ func GetUsers(w http.ResponseWriter, r *http.Request) {
 
 // CreateUser create a new user
 func CreateUser(w http.ResponseWriter, r *http.Request) {
-	var user models.User
-	err := json.NewDecoder(r.Body).Decode(&user)
+    user := &models.User{}
+	err := json.NewDecoder(r.Body).Decode(user)
 	if err != nil {
-		respond(w, message("Invalid Request"), http.StatusBadRequest)
-	} else {
-		err := models.GetDB().Create(&user)
-		if err != nil {
-			respond(w, message("Invalid Request"), http.StatusBadRequest)
-		} else {
-			w.WriteHeader(http.StatusCreated)
-			json.NewEncoder(w).Encode(&user)
-		}
+		models.Respond(w, models.Message("Invalid Request"), http.StatusBadRequest)
+        return
 	}
+    response, status := user.Create()
+    models.Respond(w, response, status)
 }
 
-func message(message string) (map[string]interface{}) {
-	return map[string]interface{} {"message" : message}
-}
-
-func respond(w http.ResponseWriter, data map[string] interface{}, status int)  {
-	w.WriteHeader(status)
-	w.Header().Add("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
-}
