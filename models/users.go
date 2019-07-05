@@ -25,7 +25,7 @@ type User struct {
 
 // Create a struct that will be encoded to a JWT.
 type Token struct {
-	UserId uuid.UUID
+	UserID uuid.UUID
 	jwt.StandardClaims
 }
 
@@ -89,7 +89,7 @@ func Login(email, password string) (map[string]interface{}, bool) {
 	}
 	user.Password = ""
 
-	tk := &Token{UserId: user.ID}
+	tk := &Token{UserID: user.ID}
 	token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), tk)
 	tokenString, _ := token.SignedString([]byte(os.Getenv("token_password")))
 	resp := Message("Logged In")
